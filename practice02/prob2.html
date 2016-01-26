@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prob2</title>
+    <script>
+        function totalReverse(arry){
+            var old;
+            var len = arry.length;
+            for(var i = 0; i < Math.floor(len/2) ; i++){
+                old = arry[i];
+                arry[i] = arry[len - 1 - i];
+                arry[len - 1 - i] = old;
+            }
+            return arry;
+        };
+
+        //        test cases:
+        var myArray = ['hello', 45, 'Bob', 'what', '23'];
+        var myArray2 = ['bug', 'insect', 'mammal', 'reptile', 'mammoth', 'turtles'];
+
+        console.log(totalReverse(myArray));
+        console.log(totalReverse(myArray2));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

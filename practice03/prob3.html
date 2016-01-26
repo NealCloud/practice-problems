@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prob3</title>
+    <script>
+        function groupArray(arry){
+            var newarry = [];
+           var dictionary = {};
+            for(var i in arry){
+                var type = typeof arry[i];
+                if(type in dictionary){
+                    dictionary[type].push(arry[i]);
+                }
+                else{
+                    dictionary[type] = [arry[i]];
+                }
+            }
+            for(var j in dictionary){
+                newarry.push(dictionary[j]);
+            }
+            return newarry;
+        }
+        //        test cases:
+        var myArray = ['hello', 34, true, false, 'goodbye', 56, 12, '25', true];
+        var myArray2 = ['bug', 'insect', 0, 'reptile', 22, 'mammoth', null, undefined];
+
+        console.log("array: " , groupArray(myArray));
+        console.log("array: " , groupArray(myArray2));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

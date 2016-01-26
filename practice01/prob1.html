@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prob1</title>
+    <script>
+        function biggerWords(str, arry){
+            strlen = str.length;
+            var newary = [];
+            for(var i in arry){
+                if(arry[i].length > strlen){
+                    newary.push(arry[i]);
+                }
+            }
+            return newary;
+        }
+
+//        test cases:
+        var myArray = ['bug', 'insect', 'mammal', 'reptile', 'mammoth', 'turtles'];
+
+        console.log(biggerWords('whales',myArray));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

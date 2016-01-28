@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prob 6</title>
+
+    <script>
+        function fibonacci(num){
+            var temp, fib = 0;
+            var old = 1;
+            for(var i = 0 ; i < num; i++){
+               temp = fib;
+               console.log(fib);
+               fib += old;
+               old = temp;
+            }
+        }
+        fibonacci(12);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

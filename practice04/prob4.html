@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prob4</title>
+    <script>
+        function bubbleSort(arry){
+//            keep going until everything is sorted
+//            using and
+            while(true){
+                var count = 0;
+                for(var i = 0; i < arry.length - 1; i++){
+                    var temp = "";
+                    var acode = arry[i].charCodeAt(0);
+                    var bcode = arry[i+1].charCodeAt(0);
+                    if(acode > bcode){
+                        //console.log("switching " + arry[i] + " with " + arry[i + 1]);
+                        temp = arry[i];
+                        arry[i] = arry[i + 1];
+                        arry[i + 1] = temp;
+                    }
+                    else count++;
+                }
+                if(count == arry.length - 1){
+                    return arry;
+                }
+            }
+        }
+        //        test cases:
+        var myArray2 = [5,3,2,6,33,928,1,1];
+        var myArray = ['mouse', 'cat', 'dog', 'human'];
+
+        console.log("array: " , bubbleSort(myArray));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -2,22 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prob 8</title>
+    <title>Prob 9</title>
 
     <script>
         function  fittingWords(str, ary){
-            var output = "";
-            for(var i = 0; i < str.length; i++){
-                output += str.charCodeAt(i);
-
-            }
-            return output;
+            var newArray = [];
+           for(var i = 0; i < ary.length; i++){
+               if(compareLetters(str, ary[i])){
+                   newArray.push(ary[i]);
+               }
+           }
+            return newArray;
         }
 
-        console.log(character_convert('the cat in the hat'));
-        var myArray = ['cat','caterpillar','whale','accurate','smile','cactus','cute'];
-       fittingWords('cat', myArray);
-//        - Output - `['cat','caterpillar','accurate','cactus']
+        function compareLetters(stra, strb){
+            var count = 0;
+            for(var i = 0; i < stra.length; i++){
+                if(findLetter(stra[i], strb)){
+                   count += 1;
+                }
+            }
+            if(count == stra.length){
+                return true;
+            }
+            return false;
+        }
+
+        function findLetter(char, str){
+            for(var i = 0; i < str.length; i++){
+                if(str[i] == char){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+       var myArray = ['cat','caterpillar','whale','accurate','smile','cactus','cute'];
+       console.log(fittingWords('cat', myArray));
+//      - Output - `['cat','caterpillar','accurate','cactus']
     </script>
 </head>
 <body>

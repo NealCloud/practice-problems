@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prob 7</title>
+
+    <script>
+        function pigLatin(string){
+            var word = "", output = "", a;
+            var len = string.length;
+            for(var i = 0; i < len; i++){
+                if(i == 1) a = string[i].toUpperCase();
+                else a = string[i];
+
+                if(a === " " || i == len - 1){
+                    if(i == len - 1)word += a;
+                    var word2 = "";
+                    var first = word[0];
+                    for(var j = 1; j < word.length; j++){
+                        word2 += word[j];
+                    }
+                    word2 += first.toLowerCase();
+                    console.log(word, word2);
+                    output += word2 + "ay " ;
+                    word = "";
+                }
+                else{
+                    word += a;
+                }
+            }
+            return output;
+        }
+
+        var myString = "Hello my name is Stu";
+        var answer = "ellohay ymay ameya siay tusay";
+        var b = "Hello there";
+        var c = "Ellohay heretay";
+        console.log(pigLatin(b));
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

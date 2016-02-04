@@ -5,7 +5,7 @@
     <title>Prob 8</title>
 
     <script>
-        function  character_convert(str){
+        function  fittingWords(str, ary){
             var output = "";
             for(var i = 0; i < str.length; i++){
                 output += str.charCodeAt(i);
@@ -15,7 +15,9 @@
         }
 
         console.log(character_convert('the cat in the hat'));
-//        yea i have no idea what its asking for in part 2
+        var myArray = ['cat','caterpillar','whale','accurate','smile','cactus','cute'];
+       fittingWords('cat', myArray);
+//        - Output - `['cat','caterpillar','accurate','cactus']
     </script>
 </head>
 <body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prob 11</title>
+
+    <script>
+        function evenodd(input){
+//            create object with starter arrays to fill
+            var output = {even:[],odd:[]};
+//            check for NaNs and loop through input array
+            for(var i = 0; i < input.length; i++){
+                if(isNaN(input[i])){
+                    console.log(input[i]);
+                }
+                else if(input[i] % 2 == 0){
+                    if(notaDupe(input[i], output.even)){
+                        output.even.push(input[i]);
+                    }
+                }
+                else{
+                    if(notaDupe(input[i], output.even)){
+                        output.odd.push(input[i]);
+                    }
+                }
+            }
+            return output;
+        }
+//check if item in array is a duplicate;
+        function notaDupe(input, ary){
+            for(var i = 0; i < ary.length; i++){
+                if(input == ary[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        out = evenodd([2,5,1,6,8,2,20,6, 20,'cat',13,3]);
+        console.log(out);
+//        - `evenodd([2,5,1,6,8,2,20,'cat',13,3]);`
+//        - Output - {
+//            odd: [5, 1, 13, 3],
+//            even: [2, 6, 8, 20]
+//        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

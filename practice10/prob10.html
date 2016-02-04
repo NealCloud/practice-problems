@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prob 10</title>
+
+    <script>
+        var undefined_var = undefined;
+        var string_var = "Rick";
+        var string2_var = "Morty";
+        var number_var = "42";
+        var number2_var = "720";
+
+        var one = string_var + string2_var;
+        var two = string_var + undefined_var;
+        var three = number2_var + number_var;
+        var four = string_var + number_var + undefined;
+        var five = string2_var + string_var + number_var;
+        var six = string2_var + (number2_var + number_var);
+        var seven = string2_var;
+        var eight = number2_var + "" + number_var;
+
+        function multi(a,b){
+            return a * b;
+        }
+        console.log(one, two, three, four, five, six, seven, eight, multi(5,2));
+
+        var test_vars = [5, 15, 28, 105, 22, -7, 75, 99];
+
+        function arrayFunc(arry){
+            var newArry = [];
+            for(var i = 0; i < arry.length; i++){
+                 if(arry[i] >= 25 && arry[i] <= 75){
+                    newArry.push(arry[i] + ' median');
+                }
+                 else if(arry[i] < 0 || arry[i] > 100){
+                     newArry.push(arry[i] + ' invalid');
+                 }
+                else if(arry[i]< 25){
+                    newArry.push(arry[i] + ' one quarter');
+                }
+                else if(arry[i] > 75){
+                    newArry.push(arry[i] + ' 3 quarters');
+                }
+            }
+            return newArry;
+        }
+
+        console.log(arrayFunc(test_vars));
+
+        function permutations(){
+
+        }
+
+        out = permutations('abc');
+        console.log(out);
+        //    output  ["abc", "acb", "bac", "bca", "cab", "cba"];
+    </script>
+</head>
+<body>
+
+</body>
+</html>

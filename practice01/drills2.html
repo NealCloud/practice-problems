@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drills 2</title>
+    <script>
+        var array_var = [2,4,12,11,3,17,4,9,19,8];
+        var array2_var = [];
+        var array3_var = ["Tim","Max","Frank","Ken","Leslie","Paul","Stan","Jaison","Trisha", "Mark"];
+        var object_literal_var = {};
+        var object2_literal_var = {"HTML": {description:"laying out website structure", fun_factor: 4},
+                                "CSS": { description: "website design and effects", fun_factor: 7 },
+                                "Javascript":{description: "create dynamic website interactions", fun_factor: 8 },
+                                "badminton":{description: "swing fanatically at flying objects", fun_factor: 9}
+        }
+
+        for(var i = 0; i < array_var.length; i ++){
+            array2_var.push(array_var[i]);
+        }
+        console.log(array2_var);
+
+        function find_val(needle, haystack){
+            var count = 0;
+            for(var i = 0; i < haystack.length; i++){
+                if(haystack[i] == needle) count++;
+            }
+            return count;
+        }
+
+       var number_var = 4;
+       console.log(find_val(number_var, array_var));
+
+        function pick_rating(ratings, names){
+            var newArray = [];
+            for(var i = 0; i < names.length; i++){
+                newArray.push({name: names[i], rating: ratings[i]});
+            }
+            return newArray;
+        }
+
+        console.log("rating:",pick_rating(array_var, array3_var));
+
+        function assign_topics(names, topics){
+//            declare empty array and empty object variables
+            var output = [];
+            var topicsHolder = {};
+//    loop through names array
+            for(var i = 0; i < names.length; i++){
+//              assign empty object to the randomTopic function output
+                topicsHolder = randomTopics(topics);
+//               push the an object with the name index and randomTopic objects as properties
+                output.push({name:names[i], topics:topicsHolder});
+            }
+            return output;
+        }
+
+        function randomTopics(objTopics){
+//            create new array
+            var newArray = [];
+//    loop through the topics object and create an array with the key value pairs [[jss,{stuff}], [html,{stuff}]]
+            for(var i in objTopics){
+                newArray.push([i,objTopics[i]]);
+            }
+            var len = newArray.length;
+
+            var filterArray = [];
+            var take = Math.floor(Math.random() * len) + 1;
+            for(var i = 0 ; i < take; i++){
+                var curlen = newArray.length;
+                var random = Math.floor(Math.random() * curlen);
+                filterArray.push(newArray.splice(random,1));
+            }
+            
+            var holder = {};
+            console.log(filterArray);
+            for(var i = 0 ; i < filterArray.length; i++){
+                holder[filterArray[i][0][0]] = filterArray[i][0][1];
+            }
+            return holder;
+        }
+
+        console.log(assign_topics(array3_var, object2_literal_var));
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

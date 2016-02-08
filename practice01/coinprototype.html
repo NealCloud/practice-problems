@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        var coin_stack = function(coin_value) {
+            this.value = coin_value;
+        }
+
+        coin_stack.prototype.add_coins = function(amount){
+            this.value += amount;
+        }
+        coin_stack.prototype.get_value = function() {
+            return this.value;
+        }
+        coin_stack.prototype.subtract_coins = function (amount) {
+            if(amount < this.value){
+                console.log("enough coins");
+                this.value -= amount;
+                return amount;
+            }
+            else {
+                var temp = this.value;
+                this.value = 0;
+                return temp;
+            }
+        }
+
+        player1_coins = new coin_stack(20);
+        player2_coins = new coin_stack(20);
+
+        player1_coins.subtract_coins(5);
+        player2_coins.add_coins(5);
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.round(Math.random() * 15)];
+            }
+            return color;
+        }
+
+        $(document).ready(function(){
+
+            first.appendTo("#arm");
+            setInterval(createClone, 200);
+            $("button").on("click",function(){
+                createClone();
+            })
+        })
+
+        var first = $("<div>",{
+            id: "circle"
+        });
+
+        function createClone(){
+            var pos = $(first).offset();
+            var color = getRandomColor();
+            var ball = $("<div>",{
+                class: "clone"
+            });
+
+            ball.css({
+                "border-color": color,
+                "top": pos.top + "px",
+                "left": pos.left + "px"
+            });
+            ball.appendTo("body");
+        }
+
+    </script>
+    <style>
+        body{
+
+        }
+        #arm{
+            height: 50px;
+            width: 50vw;
+            top: -50%;
+            left: 50%;
+            border-radius: 5%;
+            transform-origin: 0% 0%;
+            border: 1px solid black;
+            position: relative;
+            animation: rotate 2s infinite linear;
+        }
+        #circle{
+            border-radius: 50%;
+            border: 1px solid green;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            animation-name: moveit;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+        }
+        .clone{
+            border-radius: 50%;
+            border: 1px solid green;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+        }
+        .clock{
+            border: 1px solid green;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        button{
+            position: absolute;
+        }
+
+        @keyframes moveit{
+            0%   {left:0px; }
+            50%  {left:90%; }
+            100% {left:0px; }
+        }
+        @keyframes rotate {
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+        <div id="arm">
+        </div>
+        <button>Clone</button>
+
+
+</body>
+</html>

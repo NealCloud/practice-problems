@@ -35,12 +35,15 @@
         player2_coins.add_coins(5);
 
         function getRandomColor() {
-            var letters = '0123456789ABCDEF'.split('');
+            var letters = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
             var color = '#';
-            for (var i = 0; i < 6; i++ ) {
+            for (var i = 0; i < 3; i++ ) {
                 color += letters[Math.round(Math.random() * 15)];
             }
             return color;
+        }
+        function randomSize(){
+            return Math.round(Math.random() * 50) + 10;
         }
 
         $(document).ready(function(){
@@ -62,29 +65,25 @@
             var ball = $("<div>",{
                 class: "clone"
             });
-
+            $(ball).offset(pos);
             ball.css({
                 "border-color": color,
-                "top": pos.top + "px",
-                "left": pos.left + "px"
+                width: randomSize() + "px"
             });
             ball.appendTo("body");
         }
 
     </script>
     <style>
-        body{
-
-        }
         #arm{
-            height: 50px;
+            height: 10px;
             width: 50vw;
-            top: -50%;
+            top: 50%;
             left: 50%;
             border-radius: 5%;
-            transform-origin: 0% 0%;
+            transform-origin: 0% 50%;
             border: 1px solid black;
-            position: relative;
+            position: absolute;
             animation: rotate 2s infinite linear;
         }
         #circle{
@@ -104,13 +103,6 @@
             width: 50px;
             position: absolute;
         }
-        .clock{
-            border: 1px solid green;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
         button{
             position: absolute;
         }
@@ -121,19 +113,14 @@
             100% {left:0px; }
         }
         @keyframes rotate {
-            100% {
-                transform: rotateZ(360deg);
-            }
+            100% { transform: rotateZ(360deg);}
         }
 
     </style>
 </head>
 <body>
-
         <div id="arm">
         </div>
         <button>Clone</button>
-
-
 </body>
 </html>

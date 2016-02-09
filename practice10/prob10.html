@@ -7,7 +7,7 @@
         /*basic reset*/
         * {margin: 0; padding: 0;}
         /*adding a black bg to the body to make things clearer*/
-        body {background: black;}
+        /*body {background: black;}*/
         canvas {display: block;}
     </style>
 
@@ -19,15 +19,16 @@
     var ctx = c.getContext("2d");
 
     //making the canvas full screen
-    c.height = window.innerHeight;
-    c.width = window.innerWidth;
+    c.height = window.innerHeight / 2;
+    c.width = window.innerWidth / 2;
 
     //chinese characters - taken from the unicode charset
     var chinese = "田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+    var binary = [0,1];
     //converting the string into an array of single characters
     chinese = chinese.split("");
 
-    var font_size = 20;
+    var font_size = 9;
     var columns = c.width/font_size; //number of columns for the rain
     //an array of drops - one per column
     var drops = [];
@@ -35,7 +36,6 @@
     //1 = y co-ordinate of the drop(same for every drop initially)
     for(var x = 0; x < columns; x++)
         drops[x] = 1;
-
     //drawing the characters
     function draw()
     {
@@ -49,8 +49,10 @@
         //looping over drops
         for(var i = 0; i < drops.length; i++)
         {
+
+            ctx.fillStyle = getRandomColor();
             //a random chinese character to print
-            var text = chinese[Math.floor(Math.random()*chinese.length)];
+            var text = binary[Math.floor(Math.random()*binary.length)];
             //x = i*font_size, y = value of drops[i]*font_size
             ctx.fillText(text, i*font_size, drops[i]*font_size);
 
@@ -65,7 +67,14 @@
     }
     setInterval(draw, 33);
 
-
+    function getRandomColor() {
+        var letters = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+        var color = '#';
+        for (var i = 0; i < 3; i++ ) {
+            color += letters[Math.round(Math.random() * 15)];
+        }
+        return color;
+    }
     function permutations(){
 
     }
@@ -74,5 +83,10 @@
     console.log(out);
     //    output  ["abc", "acb", "bac", "bca", "cab", "cba"];
 </script>
+<style>
+    body{
+        color: white;
+    }
+</style>
 </body>
 </html>

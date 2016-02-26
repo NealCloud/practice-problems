@@ -13,40 +13,23 @@
 
         function linkList(){
             var linkKing = this;
-            var linkler  = { ob1: {item: "Start", prev: null, next: null} };
-            var head = linkler["ob1"];
-            var current = head;
+            //var linkler  = { ob1: {item: "Start", prev: null, next: null} };
+            var head = null;
+            var current = null;
             var tail = null;
-            var index = 1;
+            //var index = 1;
 
-            this.linkshow = function(){
-                console.log(linkler);
+            this.showHeadTail = function(){
+                console.log("head: ", head,  "tail: " , tail);
             };
 
-            this.addItem = function(payload){
-//              linkler["obj" + index]
-                index++;
-                var newItem = new DataObject(payload, current, null);
-                current.next = newItem;
-                current = newItem;
-            };
+            function DataObject(info, prev, next) {
+                this.item = info;
+                this.prev = prev;
+                this.next = next;
+            }
 
-            this.writeOrder = function(){
-                var start = head;
-                while(start.next != null) {
-                    var item = $("<div>", {
-                        html: start.item
-                    })
-                    $(".linklist").append(item);
-                    start = start.next;
-                }
-                var item = $("<div>", {
-                    html: start.item
-                })
-                $(".linklist").append(item);
-            };
-
-            this.findObject = function(num){
+            this.findObjectByPosition = function(num){
                 if(num == 0) return head;
                 var start = head;
                 for(var i = 1; i <= num; i++){
@@ -55,8 +38,44 @@
                 return start;
             };
 
-            this.delete = function(num){
-                var item = linkKing.findObject(num);
+            this.findObjectByItem = function(text){
+                var start = head;
+                while(start.next){
+                    if(start.item == text){
+                        console.log(start);
+                        return start;
+                    }
+                    start = start.next;
+                }
+                console.log("nothing found");
+                return null;
+            };
+
+            this.addItem = function(payload) {//
+                //index++;
+                var newItem = new DataObject(payload, current, null);
+                if(head == null){
+                    head = newItem;
+                }
+                if(current !== null){
+                    current.next = newItem;
+                }
+                current = newItem;
+                tail = newItem;
+            };
+
+            this.addInside = function(text, number){
+                var item = linkKing.findObjectByPosition(number);
+                var newItem = new DataObject(text, item, item.next);
+
+                if(item.next){
+                    item.next.prev = newItem;
+                }
+                item.next = newItem;
+            };
+
+            this.deleteObject = function(num){
+                var item = linkKing.findObjectByPosition(num);
                 if(item.prev){
                     item.prev.next = item.next;
                 }
@@ -67,39 +86,72 @@
                 else item.next.prev = null;
             };
 
-            function DataObject(info, prev, next) {
-                this.item = info;
-                this.prev = prev;
-                this.next = next;
-            }
+            this.swapAgain = function(a, b){
+
+            };
 
             this.swap = function(num1,num2){
-                var objA = linkKing.findObject(num1);
-                var objB = linkKing.findObject(num2);
-                var temp = objA.item;
-                objA.item = objB.item;
-                objB.item = temp;
+//                var objA = linkKing.findObjectByPosition(num1);
+//                var ap = linkKing.findObjectByPosition(num1 - 1);
+//                var an = linkKing.findObjectByPosition(num1 + 1);
+//                var objB = linkKing.findObjectByPosition(num2);
+//                var temp1= objA;
+//                var temp2 = ap;
+//                var temp3 = an;
+//                var bp = linkKing.findObjectByPosition(num2 - 1);
+//                var bn = linkKing.findObjectByPosition(num2 + 1);
+                //var temp = objA.item;
+               // objA.item = objB.item;
+                //objB.item = temp;
                 //temp.next = objA.next;
                 //temp.prev = objA.prev;
 
 //              var tempN = objA.next;
 //              var tempP = objA.prev;
 
-//                objA.next[prev] = objB.next[prev];
 //                objA.next = objB.next;
-//                objA.prev[next] = objB.prev[next];
-//                objA.prev = objB.prev;
+//                objA.prev = objB.next;
+//                ap.next = bp.next;
+//                an.prev = bn.prev;
 //
-//                objB.next.prev = temp.next.prev;
-//                objB.next = temp.next;
-//                objB.prev.next = temp.prev.next;
-//                objB.prev = temp.prev;
+//                objB.next = temp1.next;
+//                objB.prev = temp1.next;
+//                bp.next = temp2.next;
+//                bn.prev = temp3.prev;
+
             };
 
-            this.dummy = function(num){
-                for(var i = 1; i < num; i++){
+            this.writeOrder = function(direction){
+                var start = head;
+                var dir = "next";
+                if(direction == "tail"){
+                    start = tail;
+                    dir = "prev";
+                }
+                while(start[dir] != null) {
+                    var item = $("<div>", {
+                        html: start.item
+                    })
+                    $(".linklist").append(item);
+                    start = start[dir];
+                }
+                var item = $("<div>", {
+                    html: start.item
+                })
+                $(".linklist").append(item);
+            };
+
+            this.dummyData = function(num){
+                for(var i = 0; i < num; i++){
                     linkKing.addItem("Its me " + i);
                 }
+            }
+            this.updateData = function(order){
+                $('.linklist').empty();
+                linkKing.writeOrder(order);
+            }
+            this.clearList = function(){
+
             }
         }
 
@@ -117,6 +169,15 @@
     </script>
 </head>
 <body>
+    <button onclick="linko.dummyData(10); linko.updateData()">Add dummy Data</button>
+    <button onclick="$('.linklist').empty()">Clear</button>
+    <button onclick="linko.updateData()">Write from Start</button>
+    <button onclick="linko.updateData('tail')">Write from End</button>
+    <input type="text" id="input">
+    <input id="num" type="number" name="quantity" min="0" max="1000">
+    <button onclick="linko.addInside($('#input').val(), $('#num').val())">Add by Number</button>
+    <button onclick="linko.deleteObject($('#num').val())">Delete by Number</button>
+    <button onclick="linko.findObjectByItem($('#input').val())">Find by Item</button>
     <div class="linklist">
         <div id="ob1"></div>
         <div id="ob2"></div>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            //updateData();
+        });
+
+        function linkList(){
+            var linkKing = this;
+            var linkler  = { ob1: {item: "Start", prev: null, next: null} };
+            var head = linkler["ob1"];
+            var current = head;
+            var tail = null;
+            var index = 1;
+
+            this.linkshow = function(){
+                console.log(linkler);
+            };
+
+            this.addItem = function(payload){
+//              linkler["obj" + index]
+                index++;
+                var newItem = new DataObject(payload, current, null);
+                current.next = newItem;
+                current = newItem;
+            };
+
+            this.writeOrder = function(){
+                var start = head;
+                while(start.next != null) {
+                    var item = $("<div>", {
+                        html: start.item
+                    })
+                    $(".linklist").append(item);
+                    start = start.next;
+                }
+                var item = $("<div>", {
+                    html: start.item
+                })
+                $(".linklist").append(item);
+            };
+
+            this.findObject = function(num){
+                if(num == 0) return head;
+                var start = head;
+                for(var i = 1; i <= num; i++){
+                    start = start.next;
+                }
+                return start;
+            };
+
+            this.delete = function(num){
+                var item = linkKing.findObject(num);
+                if(item.prev){
+                    item.prev.next = item.next;
+                }
+                else item.prev.next = null;
+                if(item.next){
+                    item.next.prev = item.prev;
+                }
+                else item.next.prev = null;
+            };
+
+            function DataObject(info, prev, next) {
+                this.item = info;
+                this.prev = prev;
+                this.next = next;
+            }
+
+            this.swap = function(num1,num2){
+                var objA = linkKing.findObject(num1);
+                var objB = linkKing.findObject(num2);
+                var temp = objA.item;
+                objA.item = objB.item;
+                objB.item = temp;
+                //temp.next = objA.next;
+                //temp.prev = objA.prev;
+
+//              var tempN = objA.next;
+//              var tempP = objA.prev;
+
+//                objA.next[prev] = objB.next[prev];
+//                objA.next = objB.next;
+//                objA.prev[next] = objB.prev[next];
+//                objA.prev = objB.prev;
+//
+//                objB.next.prev = temp.next.prev;
+//                objB.next = temp.next;
+//                objB.prev.next = temp.prev.next;
+//                objB.prev = temp.prev;
+            };
+
+            this.dummy = function(num){
+                for(var i = 1; i < num; i++){
+                    linkKing.addItem("Its me " + i);
+                }
+            }
+        }
+
+        var linko = new linkList();
+
+        /*
+        * make new obj
+        * add payload
+        * add new obj pre = current
+        * add new obj.next = null
+        * make current to tail
+        * tail to new object
+        * */
+
+    </script>
+</head>
+<body>
+    <div class="linklist">
+        <div id="ob1"></div>
+        <div id="ob2"></div>
+        <div id="ob3"></div>
+    </div>
+</body>
+</html>

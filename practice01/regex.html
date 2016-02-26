@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        //Find the letter “e” in “Hello”  /e/
+        var s1 = 'Hello';
+
+
+        //Find all the letter “e”s in “HE entered” regardless if it is capitalized or not. /[eE]+/
+        var s2 = 'HE entered';
+
+        //Find both “star” and “stir” in “stir the star”, but not, for example “stat” or “stim” /st.r/  /st..r/
+        var s3 = 'stir the star';
+        var s4 = 'stim the stat';
+        var s5 = 'stir the stat';
+
+        //Present a regular expression for checking  a US phone number.
+        var phone_numebrs  = [
+            '818 555 1212',
+            '818-555-1212',
+            '1818-555-1212',
+            '(818) 555-1212',
+            '8185551212',
+            '818       555       1212',
+            '818 555-1212',
+            '18185551212'
+        ];
+        var bad_phone_numebrs  = [
+            '818555121',
+            '818?5551212',
+            '8185-55-1212',
+            '555-1212',
+            'eight one eight, five five five, one two one two'
+        ];
+        console.log(phone_numebrs[0].match(/[1]?[(]?([1-9]{3})[) -]*([0-9]{3})[- ]*([0-9]{4})/gm));
+        /*
+         Present a regular expression for checking if a password is valid.  The password must have the following criteria:
+         Between 6 and 32 characters long
+         Must have at least one capital letter
+         Must have at least one lower-case letter
+         Must have at least one number
+         Must start with a letter (lowercase or upper case)
+         */
+
+        var valid_passwords = [
+            'helloDude3',
+            'Pa5sWoRd',
+            'thisISaReallyL0NGpassword'
+        ];
+        var invalidPasswords = [
+            'short',
+            'nocapsbutanumber1',
+            '5tartsWithANumber',
+            'NOCAPSBUT4NUMBER',
+            'toDamnManyLettersForThisToBeAValidP4sswordYouKnowIt',
+            'ill#g@l_characters'
+        ];
+
+        var pwReg = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)^[a-zA-Z].{5,25}$/gm;
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
